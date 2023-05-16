@@ -1,0 +1,35 @@
+#include <iostream>
+#include <algorithm>
+#include<unordered_map>
+using namespace std;
+#define ll long long
+void solve(){
+    ll n,x;cin>>n;
+    ll a[n];
+    for (ll i = 0; i < n; i++){
+        cin>>a[i];
+    }
+    sort(a,a+n);
+    ll ans = 0;
+    ll i = 0;
+    while(i<n){
+        ll temp = a[i];
+        ll j = i+1;
+        ll grp = 1;
+        while(grp!=temp && j<n){
+            temp = max(temp,a[j]);
+            j++;
+            grp++;
+        }
+        if(grp==temp)ans++;
+        i = j;
+    }
+    cout<<ans<<endl;
+}
+int main(){
+    int t;cin>>t;
+    while(t--){
+        solve();
+    }
+    return 0;
+}
