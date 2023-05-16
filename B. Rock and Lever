@@ -1,0 +1,38 @@
+#include <iostream>
+#include <algorithm>
+#include<unordered_map>
+using namespace std;
+#define ll long long
+void solve(){
+    ll n,m;cin>>n;
+    ll a[n];
+    for (ll i = 0; i < n; i++){
+        cin>>a[i];
+    }
+    sort(a,a+n);
+    ll limit = 2;
+    ll s = 0;
+    ll e = 0;
+    ll i = 0;
+    ll cnt = 0;
+    while(i<n){
+        while(i<n && a[i]<limit){
+            i++;
+        }
+        ll range = i - s;
+        s = i;
+        if(range>=2){
+            cnt += (range*(range-1))/2;
+        }
+        limit*=2;
+    }
+    cout<<cnt<<endl;
+    
+}
+int main(){
+    int t;cin>>t;
+    while(t--){
+        solve();
+    }
+    return 0;
+}
