@@ -1,0 +1,38 @@
+#include <iostream>
+#include <algorithm>
+#include<unordered_map>
+using namespace std;
+#define ll long long
+void solve(){
+    ll n,k;cin>>n>>k;
+    string str;cin>>str;
+    unordered_map<char,ll> mp;
+    for (ll i = 0; i < k; i++){
+        char ch;cin>>ch;
+        mp[ch] = 1;
+    }
+    ll e = n-1;
+    ll i = e;
+    ll cnt = 0;
+    while(i>=0){
+        if(mp.find(str[i])==mp.end()){
+            ll len = e-i;
+            cnt += (len*(len+1))/2;
+            e = i-1;
+        }
+        i--;
+    }
+    ll len = e-i;
+    cnt += (len*(len+1))/2;
+    e = i-1;
+    cout<<cnt<<endl;
+    
+    
+}
+int main(){
+    // int t;cin>>t;
+    // while(t--){
+        solve();
+    // }
+    return 0;
+}
