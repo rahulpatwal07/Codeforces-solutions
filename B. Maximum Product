@@ -1,0 +1,30 @@
+#include <iostream>
+#include <algorithm>
+#include<unordered_map>
+using namespace std;
+#define ll long long
+void solve(){
+    ll n,m;cin>>n;
+    ll a[n];
+    for (ll i = 0; i < n; i++){
+        cin>>a[i];
+    }
+    sort(a,a+n);
+    ll maxi = a[n-1]*a[n-2]*a[n-3]*a[n-4]*a[n-5];
+    ll last3 = a[n-1]*a[n-3]*a[n-2];
+    if(a[0]<0 && a[1]<0){
+        maxi = max(maxi,a[0]*a[1]*last3);
+    }
+    if(a[0]<0 && a[1]<0 && a[2]<0 && a[3]<0){
+        maxi = max(maxi,a[0]*a[1]*a[2]*a[3]*a[n-1]);
+    }
+    cout<<maxi<<endl;
+    
+}
+int main(){
+    int t;cin>>t;
+    while(t--){
+        solve();
+    }
+    return 0;
+}
