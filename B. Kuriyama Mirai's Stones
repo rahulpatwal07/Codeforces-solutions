@@ -1,0 +1,47 @@
+#include <iostream>
+#include <algorithm>
+using namespace std;
+#define ll long long
+void solve(){
+    ll n,k;cin>>n;
+    ll a[n];
+    ll pref[n],pref2[n];
+    for (ll i = 0; i < n; i++){
+        cin>>a[i];
+    }
+    pref[0] = a[0];
+    for (ll i = 1; i < n; i++)
+    {
+        pref[i] = pref[i-1]+a[i];
+    }
+    sort(a,a+n);
+    pref2[0] = a[0];
+    for (ll i = 1; i < n; i++)
+    {
+        pref2[i] = pref2[i-1] + a[i];
+    }
+    ll m;cin>>m;
+    for (ll i = 0; i < m; i++){
+        ll type,l,r;cin>>type>>l>>r;
+        l--;
+        r--;
+        if(type==1){
+            ll mn = l>0 ? pref[l-1] : 0;
+            cout<<pref[r] - mn<<endl;
+        }
+        else{
+            ll mn = l>0 ? pref2[l-1] : 0;
+            cout<<pref2[r]-mn<<endl;
+        }
+    }
+    
+    
+    
+}
+int main(){
+    // int t;cin>>t;
+    // while(t--){
+        solve();
+    // }
+    return 0;
+}
