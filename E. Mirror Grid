@@ -1,0 +1,79 @@
+#include <iostream>
+#include <algorithm>
+#include<vector>
+using namespace std;
+#define ll long long
+
+
+
+int count(vector<vector<int>>& v,int x,int y,vector<vector<int>>& vis){
+    int nx,ny,cnt = 0;
+    int n = v.size();
+    //0 degree
+    if(v[x][y]==1)cnt++;
+    else cnt--;
+    vis[x][y] = 1;
+
+    // 90 degree -> col = row  && row = n-col;
+    nx = n-1-y;
+    ny = x;
+    if(v[nx][ny]==1)cnt++;
+    else cnt--;
+    vis[nx][ny] = 1;
+    //180 degree -> col = n-col && row = n - row;
+    nx = n - x - 1;
+    ny = n - y - 1;
+    if(v[nx][ny]==1)cnt++;
+    else cnt--;
+    vis[nx][ny] = 1;
+    //270 degree -> col = n- row && row = col;
+    nx = y;
+    ny = n - x - 1;
+    if(v[nx][ny]==1)cnt++;
+    else cnt--;
+    vis[nx][ny] = 1;
+
+    if(cnt==4 || cnt==-4)return 0;
+    if(cnt==2 || cnt==-2)return 1;
+    return 2;
+}
+
+int f(vector<vector<int>>& v,vector<vector<int>>& vis){
+    int cnt = 0;
+    for (int i = 0; i < v.size(); i++){
+        for (int j = 0; j < v[0].size(); j++){
+            if(!vis[i][j]){
+                cnt += count(v,i,j,vis);
+            }
+        }
+        
+    }
+    return cnt;
+    
+}
+void solve(){
+    ll n,x;cin>>n;
+    vector<vector<int>> v(n,vector<int>(n,0));
+    vector<vector<int>> vis(n,vector<int>(n,0));
+    string s;
+    for (int i = 0; i < n; i++){
+        cin>>s;
+        for (int j = 0; j < n; j++){
+            if(s[j]=='0'){
+                v[i][j] = 0;
+            }
+            if(s[j]=='1'){
+                v[i][j] = 1;
+            }
+        }
+    }
+    int ans = f(v,vis);
+    cout<<ans<<endl;  
+}
+int main(){
+    int t;cin>>t;
+    while(t--){
+        solve();
+    }
+    return 0;
+}
