@@ -1,0 +1,49 @@
+#include <iostream>
+#include <algorithm>
+#include<unordered_map>
+using namespace std;
+#define ll long long
+void solve(){
+    ll n,x;cin>>n;
+    ll arr[n];
+    ll srt[n];
+    for (int i = 0; i < n; i++){
+        cin>>arr[i];
+        srt[i] =arr[i];
+    }
+    sort(srt,srt+n);
+    int l = 0;
+    int r = n-1;
+    int i = 0;
+    int j = n-1;
+    while(l<r){
+        if(arr[l]!=srt[i] && arr[l]!=srt[j] && arr[r]!=srt[i] && arr[r]!=srt[j]){
+            cout<<l+1<<" "<<r+1<<endl;
+            return ;
+        }
+        else if(arr[l]==srt[i]){
+            i++;
+            l++;
+        }
+        else if(arr[l]==srt[j]){
+            l++;
+            j--;
+        }
+        else if(arr[r]==srt[i]){
+            i++;
+            r--;
+        }
+        else if(arr[r]==srt[j]){
+            r--;
+            j--;
+        }
+    }
+    cout<<"-1\n";
+}
+int main(){
+    int t;cin>>t;
+    while(t--){
+        solve();
+    }
+    return 0;
+}
