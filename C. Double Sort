@@ -1,0 +1,55 @@
+#include <iostream>
+#include <algorithm>
+#include<vector>
+using namespace std;
+#define ll long long
+
+int selectionSort(vector<ll>&a, vector<ll>&b,int n,vector<vector<int>>& v){
+    int cnt = 0;
+    for(int i=0; i<n; i++){
+        int mini = a[i];
+        int index = i;
+        for(int j=i+1; j<n; j++){
+            if(mini>a[j]){
+                index = j;
+                mini = a[j];
+            }
+        }
+        if(index!=i){
+            cnt++;
+            swap(b[index],b[i]);
+            swap(a[index],a[i]);
+            v.push_back({index,i});
+        }
+    }
+    return cnt;
+}
+
+void solve(){
+    ll n,m;cin>>n;
+    vector<ll> a(n),b(n);
+    for (int i = 0; i < n; i++)cin>>a[i];
+    for(int i=0; i<n; i++)cin>>b[i];
+    vector<vector<int>> v;
+    int cnt1 = selectionSort(a,b,n,v);
+    int cnt2 = selectionSort(b,a,n,v);
+
+    for(int i=0; i<n-1; i++){
+        if(a[i]>a[i+1]){
+            cout<<"-1\n";
+            return ;
+        }
+    }
+    cout<<cnt1+cnt2<<endl;
+    for (int i = 0; i < v.size(); i++){
+        cout<<v[i][0]+1<<" "<<v[i][1]+1<<endl;
+    }
+    
+}
+int main(){
+    int t;cin>>t;
+    while(t--){
+        solve();
+    }
+    return 0;
+}
