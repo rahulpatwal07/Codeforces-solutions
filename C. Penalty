@@ -1,0 +1,41 @@
+#include<bits/stdc++.h>
+using namespace std;
+#define ll long long
+
+int f(string s, int index, int fg,int sg){
+    if(index==9)return 1;
+    int remain = 9-index;
+    int first = remain/2;
+    int second = (remain+1)/2;
+    int ans1 = 1e9,ans2 = 1e9;
+    if(s[index]=='0' || s[index]=='?'){
+        if(fg+first < sg || sg+second < fg){
+            return 1;
+        }
+        ans1 = f(s,index+1,fg,sg);
+    }
+    if(s[index]=='1' || s[index]=='?'){
+        if(index%2==0)fg++;
+        else sg++;
+        if(fg+first < sg || sg+second < fg){
+            return 1;
+        }
+        ans2 = f(s,index+1,fg,sg);
+    }
+    return 1+min(ans1,ans2);
+
+}
+// void solve(){
+    
+
+// }
+int main(){
+    int t;cin>>t;
+    while(t--){
+        // solve();
+        string str;cin>>str;
+        int ans = f(str,0,0,0);
+        cout<<ans<<endl;
+    }
+	return 0;
+}
