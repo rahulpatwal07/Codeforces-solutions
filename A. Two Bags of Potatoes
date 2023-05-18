@@ -1,0 +1,35 @@
+#include<bits/stdc++.h>
+using namespace std;
+#define ll long long
+
+void solve(){
+    ll y,k,n;cin>>y>>k>>n;
+    ll rem = n%k;
+    ll div = n-rem;
+    vector<ll> v;
+    for (ll i = div; i >= y+1; i-=k){
+        ll x = i-y;
+        v.push_back(x);
+    }
+    if(v.size()==0){
+        cout<<"-1\n";
+        return ;
+    }
+    int n1 = v.size();
+    for (ll i = n1-1; i >=0; i--){
+        cout<<v[i]<<" ";
+    }cout<<endl;
+    
+    
+    
+    
+    
+}
+int main(){
+    // int t;cin>>t;
+    // while(t--){
+        
+        solve();
+    // }
+	return 0;
+}
