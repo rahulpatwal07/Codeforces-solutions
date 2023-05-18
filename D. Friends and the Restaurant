@@ -1,0 +1,38 @@
+#include<bits/stdc++.h>
+using namespace std;
+#define ll long long
+void solve(){
+    ll n;cin>>n;
+    vector<ll> x(n),y(n);
+    for (int i = 0; i < n; i++){
+        cin>>x[i];
+    }
+    for (int i = 0; i < n; i++){
+        cin>>y[i];
+    }
+    for (int i = 0; i < n; i++){
+        y[i]-=x[i];
+    }
+    sort(y.begin(),y.end());
+    ll i = 0;
+    ll j = n-1;
+    ll cnt = 0;
+    while(i<j){
+        if((y[i]>=0 && y[j]>=0) || y[i]+y[j]>=0){
+            cnt++;
+            i++;
+            j--;
+        }
+        else{
+            i++;
+        }
+    }
+    cout<<cnt<<endl;
+}
+int main(){
+    int t;cin>>t;
+    while(t--){
+        solve();
+    }
+	return 0;
+}
