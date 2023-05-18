@@ -1,0 +1,43 @@
+#include<bits/stdc++.h>
+using namespace std;
+#define ll long long
+void solve(){
+    ll n,q;cin>>n>>q;
+    // vector<ll> v(n);
+    map<int,int> mp;
+    ll sum = 0;
+    for (ll i = 0; i < n; i++){
+        int temp;cin>>temp;
+        sum += temp;
+        mp[i] = temp;
+    }
+    int last = -1;
+    for (ll j = 0; j < q; j++){
+        ll t,i,x;cin>>t;
+        if(t==1){
+            cin>>i>>x;
+            if(mp.find(i-1)==mp.end()){
+                sum -= last;
+            }
+            else{
+                sum -= mp[i-1];
+            }
+            mp[i-1] = x;
+            sum += x;
+        }
+        else{
+            cin>>x;
+            mp.clear();
+            last = x;
+            sum = n*x;
+        }
+        cout<<sum<<endl;
+    }
+}
+int main(){
+    // int t;cin>>t;
+    // while(t--){
+        solve();
+    // }
+	return 0;
+}
