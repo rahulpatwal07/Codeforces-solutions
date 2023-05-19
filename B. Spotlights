@@ -1,0 +1,58 @@
+#include<iostream>
+#include<vector>
+#include<algorithm>
+#include<unordered_map>
+using namespace std;
+#define ll long long
+void solve(){
+    ll n,m;cin>>n>>m; 
+    vector<vector<ll>> mat(n,vector<ll> (m,0));
+    vector<vector<ll>> row(n,vector<ll> (m,0));
+    vector<vector<ll>> col(n,vector<ll> (m,0));
+    for (int i = 0; i < n; i++){
+        for (int j = 0; j < m; j++){
+            cin>>mat[i][j];
+        }
+    }
+    for (int i = 0; i < n; i++){
+        int sum = 0;
+        for (int j = 0; j < m; j++){
+            sum += mat[i][j];
+            row[i][j] = sum;
+        }
+    }
+    
+    for (int i = 0; i < m; i++){
+        int sum = 0;
+        for (int j = 0; j < n; j++){
+            sum += mat[j][i];
+            col[j][i] = sum;
+        }
+    }
+    int cnt = 0;
+    for (int i = 0; i < n; i++){
+        for (int j = 0; j < m; j++){
+            if(mat[i][j]==0){
+                int left = row[i][j];
+                int right = row[i][m-1] - row[i][j];
+                int up = col[i][j];
+                int down = col[n-1][j] - col[i][j];
+                if(left>0)cnt++;
+                if(right>0)cnt++;
+                if(up>0)cnt++;
+                if(down>0)cnt++; 
+            }
+        }
+    }
+    cout<<cnt<<endl;
+
+    
+    
+}
+int main(){
+    // ll t;cin>>t;
+    // while(t--){
+        solve();
+    // }
+	return 0;
+}
