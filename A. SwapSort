@@ -1,0 +1,44 @@
+#include<bits/stdc++.h>
+using namespace std;
+
+void selectionSort(vector<int>&v, int n){
+    int cnt = 0;
+    vector<pair<int,int>> ans;
+    for (int i = 0; i < n; i++){
+        int mini = v[i];
+        int ind = i;
+        for (int j = i+1; j < n; j++){
+            if(v[j]<mini){
+                mini = v[j];
+                ind = j;
+            }
+        }
+        if(ind!=i){
+            cnt++;
+            swap(v[i],v[ind]);
+            ans.push_back({i,ind});
+        }
+    }
+    cout<<ans.size()<<endl;;
+    for (int i = 0; i < ans.size(); i++){
+        cout<<ans[i].first<<" "<<ans[i].second<<endl;
+    }
+    return ;
+    
+}
+void solve(){
+    int n,k;cin>>n;
+    vector<int> v(n);
+    for (int i = 0; i < n; i++){
+        cin>>v[i];
+    }
+    selectionSort(v,n);
+    
+}
+int main(){
+    // int t;cin>>t;
+    // while(t--){
+        solve();
+    // }
+	return 0;
+}
