@@ -1,0 +1,36 @@
+#include<iostream>
+#include<vector>
+#include<algorithm>
+#include<unordered_map>
+using namespace std;
+#define ll long long
+void solve(){
+    ll n,m;cin>>n>>m;
+    vector<int> c(n),t(n);
+    for (ll i = 0; i < n; i++){
+        cin>>c[i]>>t[i];
+    }
+    vector<int> v(m);
+    for (int i = 0; i < m; i++){
+        cin>>v[i];
+    }
+    int j = 0;
+    int i = 0;
+    ll tm = 0;
+    while(j<m){
+        tm += c[i]*t[i];
+        while(j<m && v[j]<=tm){
+            cout<<i+1<<endl;
+            j++;
+        }
+        i++;
+    }
+    
+}
+int main(){
+    // ll t;cin>>t;
+    // while(t--){
+        solve();
+    // }
+	return 0;
+}
