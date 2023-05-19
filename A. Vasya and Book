@@ -1,0 +1,39 @@
+#include<bits/stdc++.h>
+using namespace std;
+
+void solve(){
+    int n,x,y,d;cin>>n>>x>>y>>d;
+    int d1 = abs(y-x);
+    int d2 = abs(y-1);
+    int d3 = abs(n-y);
+    if(d1%d!=0 && d2%d!=0 && d3%d!=0){
+        cout<<"-1\n";
+        return ;
+    }
+    if(d1%d==0){
+        cout<<d1/d<<endl;
+    }
+    else{
+        int dist1 = abs(x-1)%d==0 ? abs(x-1)/d : abs(x-1)/d + 1;
+        int dist2 = abs(x-n)%d==0 ? abs(x-n)/d : abs(x-n)/d + 1;
+        dist1 += d2/d;
+        dist2 += d3/d;
+        if(d2%d==0 && d3%d==0){
+            cout<<min(dist1,dist2)<<endl;
+        }
+        else if(d2%d==0){
+            cout<<dist1<<endl;
+        }
+        else{
+            cout<<dist2<<endl;
+        }
+
+    }
+}
+int main(){
+    int t;cin>>t;
+    while(t--){
+        solve();
+    }
+	return 0;
+}
