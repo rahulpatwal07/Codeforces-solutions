@@ -1,0 +1,32 @@
+#include <iostream>
+#include <vector>
+#include <algorithm>
+#include <unordered_map>
+using namespace std;
+#define ll long long
+void solve(){
+    ll n,a,b,c;cin>>n>>a>>b>>c;
+    vector<int> dp(n+1,-1e9);
+    dp[0] = 0;
+    for (int i = 1; i <= n; i++){
+        int ans = -1e9;
+        if(i>=a){
+            ans = max(ans,1+dp[i-a]);
+        }
+        if(i>=b){
+            ans = max(ans,1+dp[i-b]);
+        }
+        if(i>=c){
+            ans = max(ans,1+dp[i-c]);
+        }
+        dp[i] = ans;
+    }
+    cout<<dp[n]<<endl;
+}
+int main(){
+    // ll t;cin>>t;
+    // while (t--){
+        solve();
+    // }
+    return 0;
+}
