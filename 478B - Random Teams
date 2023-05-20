@@ -1,0 +1,23 @@
+#include <iostream>
+#include <vector>
+#include <algorithm>
+#include <unordered_map>
+using namespace std;
+#define ll long long
+void solve(){
+    ll n,m;cin>>n>>m;
+    ll mn = n/m;
+    ll rem = n%m;
+    ll mini = rem*((mn*(mn+1))/2);
+    ll mini2 = (m-rem)*((mn*(mn-1))/2);
+    ll mx = n-m+1;
+    mx = (mx*(mx-1))/2;
+    cout<<mini+mini2<<" "<<mx<<endl;
+}
+int main(){
+    // ll t;cin>>t;
+    // while (t--){
+        solve();
+    // }
+    return 0;
+}
