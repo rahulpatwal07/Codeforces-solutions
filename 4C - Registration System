@@ -1,0 +1,31 @@
+#include <iostream>
+#include <vector>
+#include <algorithm>
+#include <unordered_map>
+using namespace std;
+#define ll long long
+void solve(){
+    ll n;cin>>n;
+    unordered_map<string,ll> mp;
+    for (ll i = 0; i < n; i++){
+        string s;cin>>s;
+        if(mp.find(s)==mp.end()){
+            cout<<"OK\n";
+            mp[s]++;
+        }
+        else{
+            ll size = mp[s];
+            mp[s]++;
+            cout<<s<<size<<endl;
+        }
+    }
+    
+    
+}
+int main(){
+    // ll t;cin>>t;
+    // while (t--){
+        solve();
+    // }
+    return 0;
+}
