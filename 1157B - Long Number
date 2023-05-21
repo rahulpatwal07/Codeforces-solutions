@@ -1,0 +1,52 @@
+#include <bits/stdc++.h>
+ 
+using namespace std;
+ 
+#define IOS ios::sync_with_stdio(0); cin.tie(0); cout.tie(0);
+#define endl "\n"
+#define ll long long 
+ 
+void solve(){
+    int n;cin>>n;
+    string s;cin>>s;
+ 
+    vector<ll> v(10);
+    for(int i=0; i<9; i++){
+        cin>>v[i];
+    }
+    int index = -1;
+    for(int i=0; i<n; i++){
+        int ind = s[i]-'0';
+        if(v[ind-1] > ind){
+            index = i;
+            break;
+        }
+    }
+    if(index==-1){
+        cout<<s<<endl;
+    }
+    else{
+        int i = index+1;
+        while(i<n && v[s[i]-'0'-1] >= s[i]-'0'){
+            i++;
+        }
+        for (int j = index; j < i; j++){
+            s[j] = v[s[j]-'0'-1]+'0';
+        }
+        cout<<s<<endl;
+        
+    }
+    
+    
+}
+ 
+int32_t main(){
+    IOS;
+    int t;
+    // cin>>t;
+    // while(t--){
+        solve();
+    // }
+    
+    return 0;
+}
