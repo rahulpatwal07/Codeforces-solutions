@@ -1,0 +1,40 @@
+#include <bits/stdc++.h>
+ 
+using namespace std;
+ 
+#define IOS ios::sync_with_stdio(0); cin.tie(0); cout.tie(0);
+#define endl "\n"
+#define ll long long 
+ 
+void solve(){
+    int n;cin>>n;
+    vector<ll> v(n);
+    for(int i=0; i<n; i++){
+        cin>>v[i];
+    }
+    vector<ll> cnt(6,0); // {4,8,15,16,23,42}
+    for (ll i = 0; i < n; i++){
+        if(v[i]==4)cnt[0]++;
+        if(v[i]==8 && cnt[0]>cnt[1])cnt[1]++;
+        if(v[i]==15 && cnt[1]>cnt[2])cnt[2]++;
+        if(v[i]==16 && cnt[2]>cnt[3])cnt[3]++;
+        if(v[i]==23 && cnt[3]>cnt[4])cnt[4]++;
+        if(v[i]==42 && cnt[4]>cnt[5])cnt[5]++;
+    }
+    int mn = cnt[5];
+    int rem = 0;
+    cout<<n-6*mn<<endl;
+    
+    
+}
+ 
+int32_t main(){
+    IOS;
+    int t;
+    // cin>>t;
+    // while(t--){
+        solve();
+    // }
+    
+    return 0;
+}
