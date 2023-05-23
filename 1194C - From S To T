@@ -1,0 +1,63 @@
+#include <bits/stdc++.h>
+using namespace std;
+ 
+#define IOS ios::sync_with_stdio(0); cin.tie(0); cout.tie(0);
+#define endl "\n"
+#define ll long long 
+ 
+void solve(){
+    string s,t,p;cin>>s>>t>>p;
+    vector<int> v(26,0);
+    for(int i=0; i<p.length(); i++){
+        v[p[i]-'a']++;
+    }
+    int j = 0;
+    int i = 0;
+    while(i<s.length() && j<t.length()){
+        if(s[i]==t[j]){
+            i++;
+            j++;
+        }
+        else{
+            if(v[t[j]-'a']>0){
+                v[t[j]-'a']--;
+                j++;
+            }
+            else{
+                cout<<"NO\n";
+                return ;
+            }
+        }
+    }
+    if(i<s.length()){
+        cout<<"NO\n";
+        return ;
+    }
+    if(j<t.length()){
+        while(j<t.length()){
+            if(v[t[j]-'a']>0){
+                v[t[j]-'a']--;
+                j++;
+            }
+            else{
+                cout<<"NO\n";
+                return ;
+            }
+        }
+        cout<<"YES\n";
+        return ;
+    }
+    cout<<"YES\n";
+ 
+}
+ 
+int32_t main(){
+    IOS;
+    int t;
+    cin>>t;
+    while(t--){
+        solve();
+    }
+    
+    return 0;
+}
