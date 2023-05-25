@@ -1,0 +1,31 @@
+#include <bits/stdc++.h>
+using namespace std;
+ 
+#define IOS ios::sync_with_stdio(0); cin.tie(0); cout.tie(0);
+#define endl "\n"
+#define ll long long 
+ 
+ 
+void solve(){
+    ll n,a,b;cin>>n>>a>>b;
+    ll ans = 0;
+    ll mn = a >= n ? n-1 : a; 
+    for (ll i = 1; i <= mn; i++){
+        ll mn1 = a/i;
+        ll mn2 = b/(n-i);
+        ans = max(ans,min(mn1,mn2));
+    }
+    cout<<ans<<endl;
+    
+}
+ 
+int32_t main(){
+    IOS;
+    // ll t;
+    // cin>>t;
+    // while(t--){
+        solve();
+    // }
+    
+    return 0;
+}
