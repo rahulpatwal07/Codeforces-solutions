@@ -1,0 +1,37 @@
+#include <bits/stdc++.h>
+using namespace std;
+ 
+#define IOS ios::sync_with_stdio(0); cin.tie(0); cout.tie(0);
+#define endl "\n"
+#define ll long long 
+ 
+ 
+void solve(){
+    string s;cin>>s;
+    //we know that if s[i]==l then the entire remaining string will be in left side of curr pos 
+    // ans if s[i]=='r' then the entire remaining string will be in right side of curr pos    
+    vector<ll> left,right;
+    for(int i=0; i<s.length(); i++){
+        if(s[i]=='l')left.push_back(i+1);
+        else right.push_back(i+1);
+    }
+    for (int i = 0; i < right.size(); i++){
+        cout<<right[i]<<endl;
+    }
+    for(int i=left.size()-1; i>=0; i--){
+        cout<<left[i]<<"\n";
+    }
+ 
+    
+}
+ 
+int32_t main(){
+    IOS;
+    // ll t;
+    // cin>>t;
+    // while(t--){
+        solve();
+    // }
+    
+    return 0;
+}
