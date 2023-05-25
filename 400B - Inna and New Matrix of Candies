@@ -1,0 +1,44 @@
+#include <bits/stdc++.h>
+using namespace std;
+ 
+#define IOS ios::sync_with_stdio(0); cin.tie(0); cout.tie(0);
+#define endl "\n"
+#define ll long long 
+ 
+void solve(){
+    long long n,m;cin>>n>>m;
+    set<long long> st;
+    bool flag = true;
+    for (long long i = 0; i < n; i++){
+        string s;cin>>s;
+        long long g = -1 ,h = -1;
+        for (long long j = 0; j < m; j++){
+            if(s[j]=='G'){
+                g = j;
+            }
+            else if(s[j]=='S'){
+                h = j;
+            }
+        }
+        if(g>h){
+            flag = false;
+        }
+        else st.insert(h-g);
+        
+    }
+    if(flag){
+        cout<<st.size()<<endl;
+    }
+    else cout<<"-1\n";
+}
+ 
+int32_t main(){
+    IOS;
+    // ll t;
+    // cin>>t;
+    // while(t--){
+        solve();
+    // }
+    
+    return 0;
+}
