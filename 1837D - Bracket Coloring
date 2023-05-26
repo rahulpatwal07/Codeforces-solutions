@@ -1,0 +1,82 @@
+#include <bits/stdc++.h>
+using namespace std;
+ 
+#define IOS                  \
+    ios::sync_with_stdio(0); \
+    cin.tie(0);              \
+    cout.tie(0);
+#define endl "\n"
+#define ll long long
+ 
+ 
+void solve(){
+    int n;cin>>n;
+   string s;cin>>s;
+   int op = 0, clo = 0;
+   for(int i=0; i<n; i++){
+    if(s[i]=='(')op++;
+    else clo++;
+   }
+   if(op!=clo){
+    cout<<"-1\n";
+   }
+   else{
+        vector<int> v(n,0);
+        int op1 = 0;
+        int clo1 = 0;
+        for(int i=0; i<n; i++){
+            if(s[i]=='(')op1++;
+            else clo1++;
+            if(op1>=clo1){
+                v[i] = 1;
+            }
+            else{
+                v[i] = 2;
+            }
+        }
+        op1 = 0;
+        clo1 = 0;
+        for(int i=n-1; i>=0; i--){
+            if(s[i]=='(')op1++;
+            else clo1++;
+            if(op1>clo1){
+                v[i] = 2;
+            }
+        }
+ 
+        bool flag = true;
+        for(int i=1; i<n; i++){
+            if(v[i]!=v[i-1])flag =false;
+        }
+        if(flag==false){
+            cout<<"2\n";
+            for (int i = 0; i < n; i++)
+            {
+                cout<<v[i]<<" ";
+            }cout<<endl;
+        }
+        else{
+            cout<<"1\n";
+            for (int i = 0; i < n; i++){
+                cout<<1<<" ";
+            }
+            cout<<endl;
+        }
+ 
+ 
+        
+   }
+   
+    
+}
+ 
+int32_t main(){
+    IOS;
+    ll t;
+    cin>>t;
+    while(t--){
+    solve();
+    }
+ 
+    return 0;
+}
