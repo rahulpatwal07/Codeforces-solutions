@@ -1,0 +1,49 @@
+#include <bits/stdc++.h>
+using namespace std;
+
+#define IOS                  \
+    ios::sync_with_stdio(0); \
+    cin.tie(0);              \
+    cout.tie(0);
+#define endl "\n"
+#define ll long long
+
+
+void solve(){
+    int st,it,exp;cin>>st>>it>>exp;
+    if(st<=it){
+        int diff = it-st;
+        exp -= diff;
+        exp--;
+        st = it+1;
+    }
+    if(exp<0){
+        cout<<"0\n";
+        return ;
+    }
+    int mx = -1;
+    int s = 0;
+    int e = exp;
+    while(s<=e){
+        int mid = s + (e-s)/2;
+        if(it+mid < st+exp-mid){
+            mx = mid;
+            s = mid+1;
+        }
+        else{
+            e = mid-1;
+        }
+    }
+    cout<<mx+1<<endl;   
+}
+
+int32_t main(){
+    IOS;
+    ll t;
+    cin>>t;
+    while(t--){
+    solve();
+    }
+
+    return 0;
+}
