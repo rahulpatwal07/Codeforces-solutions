@@ -1,0 +1,44 @@
+#include <bits/stdc++.h>
+using namespace std;
+
+#define IOS                  \
+    ios::sync_with_stdio(0); \
+    cin.tie(0);              \
+    cout.tie(0);
+#define endl "\n"
+#define ll long long
+
+void solve(){
+    ll a,b,p;cin>>a>>b>>p;
+    string str;cin>>str;
+    ll n = str.length();
+    ll i = str.length()-2;
+    vector<ll> cost(n,0);
+    while(i>=0){
+        char ch = str[i];
+        ll add = cost[i+1];
+        ll ct = ch=='A' ? a : b; 
+        while(i>=0 && str[i]==ch){
+            cost[i] = ct + add;
+            i--;
+        }
+    }
+    for(ll i=0; i<n; i++){
+        if(cost[i]<=p){
+            cout<<i+1<<endl;
+            return;
+        }
+    }
+    
+}
+
+int32_t main(){
+    IOS;
+    ll t;
+    cin>>t;
+    while(t--){
+        solve();
+    }
+
+    return 0;
+}
