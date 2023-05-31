@@ -1,0 +1,51 @@
+#include <bits/stdc++.h>
+using namespace std;
+
+#define IOS                  \
+    ios::sync_with_stdio(0); \
+    cin.tie(0);              \
+    cout.tie(0);
+#define endl "\n"
+#define ll long long
+
+void solve(){    
+    priority_queue<pair<int,int>,vector<pair<int,int>>,greater<pair<int,int>>> intro;
+    priority_queue<pair<int,int>> extro;
+    int n;cin>>n;
+    vector<int> w(n);
+    for (int i = 0; i < n; i++){
+        cin>>w[i];
+        intro.push({w[i],i+1});
+    }
+    vector<int> v(2*n,0);
+    string str;cin>>str;
+    for(int i=0; i<str.length(); i++){
+        if(str[i]=='0'){
+            auto it = intro.top();
+            intro.pop();
+            v[i] = it.second;
+            extro.push(it);
+        }
+        else{
+            auto it = extro.top();
+            extro.pop();
+            v[i] = it.second;
+        }
+    }
+    for (int i = 0; i < v.size(); i++){
+        cout<<v[i]<<" ";
+        
+    }cout<<endl;
+    
+}
+
+int32_t main(){
+    IOS;
+    // ll t;
+    // cin>>t;
+    // while(t--){
+        solve();
+    // }
+
+    return 0;
+}
