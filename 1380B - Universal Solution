@@ -1,0 +1,50 @@
+#include <bits/stdc++.h>
+using namespace std;
+
+#define IOS                  \
+    ios::sync_with_stdio(0); \
+    cin.tie(0);              \
+    cout.tie(0);
+#define endl "\n"
+#define ll long long
+void solve(){
+    string s;cin>>s;
+    unordered_map<char,int> mp;
+    for(int i=0; i<s.length(); i++){
+        mp[s[i]]++;
+    }
+    int mx = 0;
+    char ch;
+    for(auto it: mp){
+        if(mx < it.second){
+            mx = it.second;
+            ch = it.first;
+        }
+    }
+    // cout<<mx<<endl;
+    char ans;
+    if(ch=='R'){
+        ans = 'P';
+    }
+    else if(ch=='S'){
+        ans = 'R';
+    }
+    else{
+        ans = 'S';
+    }
+    for (int i = 0; i < s.length(); i++){
+        cout<<ans;
+    }
+    cout<<endl;
+}
+
+int32_t main(){
+    IOS;
+    ll t;
+    cin>>t;
+    while(t--){
+        solve();
+    }
+
+    return 0;
+}
