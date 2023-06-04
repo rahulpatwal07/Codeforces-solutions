@@ -1,0 +1,50 @@
+#include <iostream>
+#include <algorithm>
+#include <vector>
+using namespace std;
+
+#define IOS                  \
+    ios::sync_with_stdio(0); \
+    cin.tie(0);              \
+    cout.tie(0);
+#define endl "\n"
+#define ll long long
+
+
+void solve(){
+    ll n,p,k;cin>>n>>p>>k; // k==2
+    vector<ll> a(n);
+    for (ll i = 0; i < n; i++){
+        cin>>a[i];
+    }
+    sort(a.begin(),a.end());
+    vector<ll> pref(n,0);
+    pref[0] = a[0];
+    pref[1] = a[1];
+    for(int i=2; i<n; i++){
+        pref[i] = a[i] + pref[i-2];
+    }
+    ll good = n;
+    ll cnt = 0;
+    for(int i=0; i<n; i++){
+        if(pref[i] > p){
+            good = i;
+            break;
+        }
+    }
+    cout<<good<<endl;
+    
+    
+    
+}
+
+int32_t main(){
+    IOS;
+    ll t;
+    cin>>t;
+    while(t--){     
+        solve();
+    }
+
+    return 0;
+}
