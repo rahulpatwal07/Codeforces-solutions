@@ -1,0 +1,62 @@
+#include <iostream>
+#include <queue>
+#include <vector>
+using namespace std;
+
+#define IOS                  \
+    ios::sync_with_stdio(0); \
+    cin.tie(0);              \
+    cout.tie(0);
+#define endl "\n"
+#define ll long long
+
+int dfs(int node, int col, int dest,vector<int>&vis, vector<vector<pair<int,int>>>&adj){
+    vis[node] = 1;
+    if(node==dest){
+        return 1;
+    }
+    for(auto it: adj[node]){
+        if(it.second==col && vis[it.first]==0){
+            if(dfs(it.first,col,dest,vis,adj)){
+                return 1;
+            }
+        }
+    }
+    return 0;
+}
+
+void solve(){
+    ll n,m1,m2;cin>>n>>m1;
+    vector<vector<pair<int,int>>> adj(n+1);
+    for(int i=0; i<m1; i++){
+        int u,v,c;cin>>u>>v>>c;
+        adj[u].push_back({v,c});
+        adj[v].push_back({u,c});
+    }
+    int q;cin>>q;
+    for(int i=0; i<q; i++){
+        int u,v;cin>>u>>v;
+        int cnt = 0;
+        for (int j = 1; j < 101; j++){
+            vector<int>vis(n+1,0);
+            if(dfs(u,j,v,vis,adj)){
+                cnt++;
+            }
+        }
+        
+        cout<<cnt<<endl;
+    }
+    
+    
+}
+
+int32_t main(){
+    IOS;
+    ll t;
+    // cin>>t;
+    // while(t--){     
+        solve();
+    // }
+
+    return 0;
+}
