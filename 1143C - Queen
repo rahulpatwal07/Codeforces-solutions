@@ -1,0 +1,90 @@
+#include <iostream>
+#include <algorithm>
+#include <vector>
+#include <set>
+using namespace std;
+
+#define IOS                  \
+    ios::sync_with_stdio(0); \
+    cin.tie(0);              \
+    cout.tie(0);
+#define endl "\n"
+#define ll long long
+vector<ll> ans;
+
+
+set<int> st;
+vector<int> res;
+bool dfs(int root,vector<vector<pair<int,int>>>&child){
+    // if(child[root].size()==0){
+
+    //     return false;
+    // }
+    bool flag = false;
+    if(res[root]==0){
+        flag = true;
+    }
+    for(auto it : child[root]){
+        // cout<<it.first<<" "<<it.second/<<endl;
+        if(it.second==0){
+            flag = true;
+        }
+        dfs(it.first,child);
+    }
+    if(!flag){
+        ans.push_back(root);
+    }
+    return flag;
+}
+void dfs1(int node,vector<vector<pair<int,int>>> &child){
+    st.insert(node);
+    for(auto it: child[node]){
+        dfs1(it.first,child);
+    }
+}
+void solve(){
+    int n;cin>>n;
+    vector<vector<pair<int,int>>> child(n+1);
+    res.resize(n+1);
+    for (int i = 0; i <= n; i++){
+        res[i] = 1;
+    }
+    
+    int root = -1;
+    for(int i=0; i<n; i++){
+        int p,c;cin>>p>>c;
+        res[i+1] = c;
+        if(p==-1){
+            root = i+1;
+        }
+        else child[p].push_back({i+1,c});
+    }
+    dfs(root,child);
+    if(ans.size()==0){
+        cout<<"-1\n";
+        return ;
+    }
+    sort(ans.begin(),ans.end());
+    for(int i=0; i<ans.size(); i++){
+        cout<<ans[i]<<" ";
+        // dfs1(ans[i],child);
+    }
+    cout<<endl;
+    
+
+
+    
+    
+    
+}
+
+int32_t main(){
+    IOS;
+    // ll t;
+    // cin>>t;
+    // while(t--){     
+        solve();
+    // }
+
+    return 0;
+}
