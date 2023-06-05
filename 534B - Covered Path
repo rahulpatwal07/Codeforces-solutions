@@ -1,0 +1,43 @@
+#include <iostream>
+#include <algorithm>
+#include <vector>
+#include <unordered_map>
+#include <set>
+using namespace std;
+
+#define IOS                  \
+    ios::sync_with_stdio(0); \
+    cin.tie(0);              \
+    cout.tie(0);
+#define endl "\n"
+#define ll long long
+
+void solve(){
+    int v1,v2;cin>>v1>>v2;
+    int t,d;cin>>t>>d;
+    vector<int> a(t+1,0),b(t+1,0);
+    a[1] = v1;
+    b[t] = v2;
+    for(int i=2; i<=t; i++){
+        a[i] = a[i-1] + d;
+    }
+    for(int i=t-1; i>=1; i--){
+        b[i] = b[i+1]+d;
+    }
+    int ans = 0;
+    for(int i=1; i<=t; i++){
+        ans += min(a[i],b[i]);
+    }
+    cout<<ans<<endl;
+}
+
+int32_t main(){
+    IOS;
+    // ll t;
+    // cin>>t;
+    // while(t--){     
+        solve();
+    // }
+
+    return 0;
+}
