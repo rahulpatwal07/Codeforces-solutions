@@ -1,0 +1,56 @@
+#include <iostream>
+#include <algorithm>
+#include <vector>
+#include <map>
+#include <queue>
+using namespace std;
+
+#define IOS                  \
+    ios::sync_with_stdio(0); \
+    cin.tie(0);              \
+    cout.tie(0);
+#define endl "\n"
+#define ll long long
+
+void solve(){
+    string s;cin>>s;
+    string t;cin>>t;
+    int c1 = 0, c2 = 0;
+    map<char,int> mp;
+    for(int i=0; i<t.length(); i++){
+        mp[t[i]]++;
+    }
+    for(int i=0; i<s.length(); i++){
+        if(mp[s[i]]>0){
+            c1++;
+            mp[s[i]]--;
+            s[i] = '*';
+        }
+    }
+    for(int i=0; i<s.length(); i++){
+        char ch = s[i];
+        if(s[i]>='A' && s[i]<='Z'){
+            ch += 32;
+        }
+        else if(s[i]>='a' && s[i]<='z'){
+            ch-=32;
+        }
+        if(mp[ch]>0){
+            c2++;
+            mp[ch]--;
+        }
+    }
+    cout<<c1<<" "<<c2<<endl;
+
+}
+
+int32_t main(){
+    IOS;
+    // ll t;
+    // cin>>t;
+    // while(t--){     
+        solve();
+    // }
+
+    return 0;
+}
