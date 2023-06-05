@@ -1,0 +1,104 @@
+#include <iostream>
+#include <algorithm>
+#include <vector>
+#include <unordered_map>
+#include <set>
+using namespace std;
+
+#define IOS                  \
+    ios::sync_with_stdio(0); \
+    cin.tie(0);              \
+    cout.tie(0);
+#define endl "\n"
+#define ll long long
+
+class disjointSet{
+    public:
+    vector<int> parent,size;
+    disjointSet(int n){
+        parent.resize(n);
+        size.resize(n);
+        for(int i=0; i<n; i++){
+            parent[i] = i;
+            size[i] = 1;
+        }
+    }
+    int findUParent(int u){
+        if(parent[u]==u){
+            return u;
+        }
+        return parent[u] = findUParent(parent[u]);
+    }
+    void Union(int u, int v){
+        int p1 = findUParent(u);
+        int p2 = findUParent(v);
+        if(p1==p2){
+            return ;
+        }
+        if(size[p1] > size[p2]){
+            parent[p1] = p2;
+            size[p2] += size[p1];
+        }
+        else{
+            parent[p2] = p1;
+            size[p1] += size[p2];
+        }
+    }
+};
+
+void solve(){
+    int n,k;cin>>n>>k;
+    string s;cin>>s;
+    string t;cin>>t;
+    disjointSet ds(n);
+    // sort(s.begin(),s.end());
+    // sort(t.begin(),t.end());
+    // if(s==t){
+    //     cout<<"YES\n";
+    // }
+    // else{
+    //     cout<<"NO\n";
+    // }
+    for(int i=0; i<n; i++){
+        if(i+3<n){
+            ds.Union(i,i+3);
+        }
+        if(i+4<n){
+            ds.Union(i,i+4);
+        }
+    }
+    for(int i=0; i<n; i++){
+        ds.findUParent(i);
+    }
+    for(int i=0; i<n; i++){
+        if(ds.parent[i]==i){
+            unordered_map<char,int> mp;
+            for(int j=0; j<n; j++){
+                if(ds.parent[j]==i){
+                    mp[s[j]]++;
+                    mp[t[j]]--;
+                }
+            }
+            for(auto it : mp){
+                if(it.second>0 || it.second<0){
+                    // cout<<it.first<<" "<<i<<endl;
+                    cout<<"NO\n";
+                    return ;
+                }
+            }
+        }
+    }
+    cout<<"YES\n";
+
+}
+
+int32_t main(){
+    IOS;
+    ll t;
+    cin>>t;
+    while(t--){     
+        solve();
+    }
+
+    return 0;
+}
