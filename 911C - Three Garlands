@@ -1,0 +1,49 @@
+#include <bits/stdc++.h>
+
+using namespace std;
+
+#define IOS                  \
+    ios::sync_with_stdio(0); \
+    cin.tie(0);              \
+    cout.tie(0);
+#define endl "\n"
+#define ll long long
+
+static bool cmp(int a, int b){
+    return a%10 > b%10;
+}
+
+void solve(){
+    int k1,k2,k3;cin>>k1>>k2>>k3;
+    int mn = min(k1,min(k2,k3));
+    int mx = max(k1,max(k2,k3));
+    int mid = k1 + k2 + k3 - mn - mx;
+    if(mn==1){
+        cout<<"YES\n";
+    }
+    else if((k1==2 && k2==2) || (k2==2 && k3==2) || (k1==2 && k3==2)){
+        cout<<"YES\n";
+    }
+    else if(k1==3 && k2==3 && k3==3){
+        cout<<"YES\n";
+    }
+    else if(mn==2 && mid==4 && mx==4){
+        cout<<"YES\n";
+    }
+    else{
+        cout<<"NO\n";
+    }
+    
+    
+}
+
+int32_t main(){
+    IOS;
+    // ll t;
+    // cin>>t;
+    // while(t--){     
+        solve();
+    // }
+
+    return 0;
+}
