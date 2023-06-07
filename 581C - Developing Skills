@@ -1,0 +1,73 @@
+#include <bits/stdc++.h>
+
+using namespace std;
+
+#define IOS                  \
+    ios::sync_with_stdio(0); \
+    cin.tie(0);              \
+    cout.tie(0);
+#define endl "\n"
+#define ll long long
+
+static bool cmp(int a, int b){
+    return a%10 > b%10;
+}
+
+void solve(){
+    ll n,k;cin>>n>>k;
+    vector<ll> a(n);
+    for (ll i = 0; i < n; i++){
+        cin>>a[i];
+    }
+    int cnt = 0;
+    sort(a.begin(),a.end(),cmp);
+    
+    for(int i=0; i<n; i++){
+        if(a[i]==100){
+            continue;
+        }
+        int rem = 10 - a[i]%10;
+        if(k>=rem){
+            k-=rem;
+            a[i] = a[i] + rem;
+        }
+        else{
+            break;
+        }
+    }
+    if(k>=10){
+        for(int i=0; i<n; i++){
+            if(a[i]<=90){
+                int diff = 100-a[i];
+                if(k>=diff){
+                    k-=diff;
+                    a[i] = 100;
+                }
+                else{
+                    a[i] += k;
+                    k = 0;
+                    break;
+                }
+            }
+        }
+    }
+    for (int i = 0; i < n; i++)
+    {
+        cnt += a[i]/10;
+    }
+    
+    cout<<cnt<<endl;
+    
+    
+}
+
+int32_t main(){
+    IOS;
+    // ll t;
+    // cin>>t;
+    // while(t--){     
+        solve();
+    // }
+
+    return 0;
+}
