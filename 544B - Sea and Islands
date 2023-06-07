@@ -1,0 +1,50 @@
+#include <bits/stdc++.h>
+
+using namespace std;
+
+#define IOS                  \
+    ios::sync_with_stdio(0); \
+    cin.tie(0);              \
+    cout.tie(0);
+#define endl "\n"
+#define ll long long
+
+void solve(){
+   ll n,k;cin>>n>>k;
+    if(n%2==0 && k>n*(n/2)){
+        cout<<"NO\n";
+        return ;
+    }
+    else if(n%2==1){
+        int f = (n+1)/2;
+        int s = n/2;
+        if(k>f*f+s*s){
+            cout<<"NO\n";
+            return ;
+        }
+    }
+    cout<<"YES\n";
+    for(int i=0; i<n; i++){
+        for(int j=0; j<n; j++){
+            if((i+j)%2==0 && k>0){
+                cout<<"L";
+                k--;
+            }
+            else{
+                cout<<"S";
+            }
+        }
+        cout<<endl;
+    }
+}
+
+int32_t main(){
+    IOS;
+    // ll t;
+    // cin>>t;
+    // while(t--){     
+        solve();
+    // }
+
+    return 0;
+}
