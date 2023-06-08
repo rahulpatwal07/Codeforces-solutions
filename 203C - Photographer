@@ -1,0 +1,48 @@
+#include <bits/stdc++.h>
+
+using namespace std;
+
+#define IOS                  \
+    ios::sync_with_stdio(0); \
+    cin.tie(0);              \
+    cout.tie(0);
+#define endl "\n"
+#define ll long long
+
+void solve(){
+    ll n,d;cin>>n>>d;
+    ll a,b;cin>>a>>b;
+    vector<pair<ll,ll>> nums;
+    vector<ll> v(n),v1(n);
+    for (ll i = 0; i < n; i++){
+        cin>>v[i]>>v1[i];
+        nums.push_back({v[i]*a+v1[i]*b,i});
+    }
+    sort(nums.begin(),nums.end());
+    vector<ll> ans;
+    for(ll i=0; i<n; i++){
+        ll ind = nums[i].second;
+        ll sum = nums[i].first;
+        if(d >= sum){
+            ans.push_back(ind+1);
+            d -= sum;
+        }
+    }
+    cout<<ans.size()<<endl;
+    for (ll i = 0; i < ans.size(); i++)
+    {
+        cout<<ans[i]<<" ";
+    }cout<<endl;
+    
+}
+
+int32_t main(){
+    IOS;
+    // ll t;
+    // cin>>t;
+    // while(t--){     
+        solve();
+    // }
+
+    return 0;
+}
