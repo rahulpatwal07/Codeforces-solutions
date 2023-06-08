@@ -1,0 +1,63 @@
+#include <bits/stdc++.h>
+
+using namespace std;
+
+#define IOS                  \
+    ios::sync_with_stdio(0); \
+    cin.tie(0);              \
+    cout.tie(0);
+#define endl "\n"
+#define ll long long
+
+void dfs(ll st, ll curr, vector<vector<pair<ll,ll>>>& adj,vector<ll>&vis,ll mx, vector<vector<ll>>&ans){
+    bool flag = true;
+    vis[curr] = 1;
+    for(auto it : adj[curr]){
+        if(!vis[it.first]){
+            mx = min(mx,it.second);
+            dfs(st,it.first,adj,vis,mx,ans);
+            flag = false;
+        }
+    }
+    if(flag){
+        ans.push_back({st,curr,mx});
+    }
+    return ;
+}
+
+void solve()
+{
+    ll n,p;cin>>n>>p;
+    vector<vector<pair<ll,ll>>>adj(n + 1);
+    vector<ll> in(n+1,0),out(n+1,0);
+    for (ll i = 0; i < p; i++){
+        ll a,b,d;cin>>a>>b>>d;
+        in[b] = 1;
+        out[a] = 1;
+        adj[a].push_back({b, d});
+    }
+
+    vector<ll> vis(n+1,0);
+    vector<vector<ll>> ans; 
+    for(ll i=1; i<=n; i++){
+        if(in[i]==0 && out[i] == 1 && vis[i]==0){
+            dfs(i,i,adj,vis,1e9,ans);
+        }
+    }
+    cout<<ans.size()<<endl;
+    for(auto it: ans){
+        cout<<it[0]<<" "<<it[1]<<" "<<it[2]<<endl;
+    }
+}
+
+int32_t main()
+{
+    IOS;
+    // ll t;
+    // cin>>t;
+    // while(t--){
+    solve();
+    // }
+
+    return 0;
+}
