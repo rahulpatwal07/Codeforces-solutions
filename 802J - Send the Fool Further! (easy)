@@ -1,0 +1,45 @@
+#include <bits/stdc++.h>
+
+using namespace std;
+
+#define IOS                  \
+    ios::sync_with_stdio(0); \
+    cin.tie(0);              \
+    cout.tie(0);
+#define endl "\n"
+#define ll long long
+
+ll dfs(ll node, vector<vector<pair<ll,ll>>>&adj,vector<ll>& vis){
+    vis[node] = 1;
+    ll mx = 0;
+    for(auto it : adj[node]){
+        if(!vis[it.first]){
+            mx = max(mx,it.second + dfs(it.first,adj,vis));
+        }
+    }
+    vis[node] = 0;
+    return mx;
+}
+
+void solve(){
+    ll n;cin>>n;
+    vector<vector<pair<ll,ll>>> adj(n);
+    for (ll i = 0; i < n-1; i++){
+        ll u,v,c;cin>>u>>v>>c;
+        adj[u].push_back({v,c});
+        adj[v].push_back({u,c});
+    }
+    vector<ll> vis(n,0);
+    cout<<dfs(0,adj,vis)<<endl;
+}
+
+int32_t main()
+{
+    IOS;
+    ll t;
+    // cin>>t;
+    // while(t--){
+    solve();
+    // }
+    return 0;
+}
