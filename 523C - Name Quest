@@ -1,0 +1,56 @@
+#include <bits/stdc++.h>
+
+using namespace std;
+
+#define IOS                  \
+    ios::sync_with_stdio(0); \
+    cin.tie(0);              \
+    cout.tie(0);
+#define endl "\n"
+#define ll long long
+
+void solve(){
+    string s;cin>>s;
+    string t;cin>>t;
+    int i = 0,j = s.length()-1;
+    int k = 0;
+    while(i<s.length() && k<t.length()){
+        if(s[i]==t[k]){
+            i++;
+            if(i==s.length()){
+                break;
+            }
+        }
+        k++;
+    }
+    // reverse(s.begin(),s.end());
+    int k1 = t.length()-1;
+    while(j>=0 && k1>=0){
+        if(s[j]==t[k1]){
+            j--;
+            if(j<0){
+                break;
+            }
+        }
+        k1--;
+    }
+    if(k1<=k){
+        cout<<"0\n";
+        return ;
+    }
+    // cout<<k<<" "<<k1<<endl;
+    int len = k1-k;
+    cout<<len<<endl;
+
+}
+
+int32_t main()
+{
+    IOS;
+    ll t;
+    // cin>>t;
+    // while(t--){
+    solve();
+    // }
+    return 0;
+}
