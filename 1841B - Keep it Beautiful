@@ -1,0 +1,63 @@
+#include <bits/stdc++.h>
+
+using namespace std;
+
+#define IOS                  \
+    ios::sync_with_stdio(0); \
+    cin.tie(0);              \
+    cout.tie(0);
+#define endl "\n"
+#define ll long long
+
+void solve(){
+    int q;cin>>q;
+    int last = -1;
+    int first = -1;
+    int rot = 0;
+    for (int i = 0; i < q; i++){
+        int x;cin>>x;
+        if(i==0){
+            cout<<1;
+            last = x;
+            first = x;
+            continue;
+        }
+        if(rot==1){
+            if(x>=last && x<=first){
+                cout<<1;
+                last = x;
+            }
+            else{
+                cout<<0;
+            }
+            continue;
+        }
+        else if(x>=last){
+            cout<<1;
+            last = x;
+            continue;
+        }
+        else if(x<=first){
+            rot = 1;
+            cout<<1;
+            last = x;
+            continue;
+        }
+        else{
+            cout<<0;
+        }
+    }
+    cout<<endl;
+    
+    
+}
+
+int32_t main(){
+    IOS;
+    ll t;
+    cin>>t;
+    while(t--){
+    solve();
+    }
+    return 0;
+}
