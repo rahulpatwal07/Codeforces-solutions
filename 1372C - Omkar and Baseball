@@ -1,0 +1,52 @@
+#include <bits/stdc++.h>
+using namespace std;
+
+#define IOS                  \
+    ios::sync_with_stdio(0); \
+    cin.tie(0);              \
+    cout.tie(0);
+#define endl "\n"
+#define ll long long
+
+void solve(){
+    int n,m;cin>>n;
+    vector<int> arr(n);
+    for (int i = 0; i < n; i++){
+        cin>>arr[i];
+    }
+    int ind = 0;
+    while(ind<n && arr[ind]==ind+1){
+        ind++;
+    }
+    if(ind==n){
+        cout<<"0\n";
+        return ;
+    }
+    int end = n-1;
+    while(end>=0 && arr[end]==end+1){
+        end--;
+    }
+    bool flag = false;
+    for(int i=ind; i<=end; i++){
+        if(arr[i]==i+1){
+            flag = true;
+        }
+    }
+    if(flag){
+        cout<<"2\n";
+    }
+    else{
+        cout<<"1\n";
+    }
+    
+}
+
+int32_t main(){
+    IOS;
+    ll t;
+    cin>>t;
+    while(t--){
+    solve();
+    }
+    return 0;
+}
