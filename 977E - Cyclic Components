@@ -1,0 +1,67 @@
+#include <bits/stdc++.h>
+using namespace std;
+
+#define IOS                  \
+    ios::sync_with_stdio(0); \
+    cin.tie(0);              \
+    cout.tie(0);
+#define endl "\n"
+#define ll long long
+
+
+int dfs(int node, vector<vector<int>>& adj,vector<int>& vis, int start,int parent){
+    vis[node] = 1;
+    if(adj[node].size()!=2){
+        return 0;
+    }
+    // bool flag = false;
+    int cnt = 0;
+    for(auto it : adj[node]){
+        if(vis[it]==0){
+            // cout<<it<<endl;
+            return dfs(it,adj,vis,start,node);
+        }
+        else{
+            if(it==parent){
+                cnt++;
+            }
+            else if(it==start){
+                cnt++;
+            }
+            // cout<<it<<" "<<cnt<<endl;
+        }
+    }
+    return cnt==2;
+    
+}
+
+
+void solve(){
+    int n,m;cin>>n>>m;
+    vector<vector<int>> adj(n+1);
+    for(int i=0; i<m; i++){
+        int u,v;cin>>u>>v;
+        adj[u].push_back(v);
+        adj[v].push_back(u);
+    }
+    vector<int> vis(n+1,0);
+    int cnt = 0;
+    for(int i=1; i<=n; i++){
+        if(vis[i]==0 && adj[i].size()==2){
+            // cout<<i<<endl;
+            cnt += dfs(i,adj,vis,i,0);
+        }
+    }
+    cout<<cnt<<endl;
+        
+}
+
+int32_t main(){
+    IOS;
+    // ll t;
+    // cin>>t;
+    // while(t--){
+    solve();
+    // }
+    return 0;
+}
