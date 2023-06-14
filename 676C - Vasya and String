@@ -1,0 +1,55 @@
+#include <bits/stdc++.h>
+using namespace std;
+
+#define IOS                  \
+    ios::sync_with_stdio(0); \
+    cin.tie(0);              \
+    cout.tie(0);
+#define ll long long
+
+
+bool check(string s, int mid, int k){
+    vector<int> v(2,0);
+    for(int i=0; i<mid; i++){
+        v[s[i]-'a']++;
+    }
+    if(k>=min(v[0],v[1])){
+        return true;
+    }
+    for(int i=0; i+mid<s.length(); i++){
+        v[s[i]-'a']--;
+        v[s[i+mid]-'a']++;
+        if(k>=min(v[0],v[1])){
+            return true;
+        }
+    }
+    return false;
+}
+void solve(){
+    int n,k;cin>>n>>k;
+    string s;cin>>s;
+    int l = k;
+    int h = n;
+    int ans = 0;
+    while(l<=h){
+        int mid = l + (h-l)/2;
+        if(check(s,mid,k)){
+            l = mid+1;
+            ans = mid;
+        }
+        else{
+            h = mid-1;
+        }
+    }
+    cout<<ans<<endl;
+}
+
+int32_t main(){
+    IOS;
+    // ll t;
+    // cin>>t;
+    // while(t--){
+    solve();
+    // }
+    return 0;
+}
