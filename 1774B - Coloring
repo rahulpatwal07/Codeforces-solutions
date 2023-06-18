@@ -1,0 +1,36 @@
+#include <bits/stdc++.h>
+using namespace std;
+
+#define IOS                  \
+    ios::sync_with_stdio(0); \
+    cin.tie(0);              \
+    cout.tie(0);
+#define ll long long
+ll cnt = 0;
+
+
+void solve(){
+    int n,m,k;cin>>n>>m>>k;
+    int ans = 0;
+    for(int i=1; i<=m; i++){
+        int a;cin>>a;
+        if(a == (n+k-1)/k) ans++;
+        if(a > (n+k-1)/k) ans = 1<<30;
+    }
+    if(ans <= (n-1)%k+1){
+        cout<<"YES\n";
+    }
+    else{
+        cout<<"NO\n";
+    }
+}
+
+int32_t main(){
+    IOS;
+    ll t;
+    cin>>t;
+    while(t--){
+    solve();
+    }
+    return 0;
+}
