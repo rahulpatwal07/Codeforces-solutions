@@ -1,0 +1,39 @@
+#include <bits/stdc++.h>
+using namespace std;
+
+#define IOS                  \
+    ios::sync_with_stdio(0); \
+    cin.tie(0);              \
+    cout.tie(0);
+#define ll long long
+
+void solve(){
+    ll k;cin>>k;
+    vector<int> v;
+    while(k>0){
+        int val = k%9;
+        v.push_back(val);
+        k /= 9;
+    }
+    reverse(v.begin(),v.end());
+    for(int i=0; i<v.size(); i++){
+        if(v[i] < 4){
+            cout<<v[i];
+        }
+        else{
+            cout<<v[i]+1;
+        }
+    }cout<<endl;
+    
+
+}
+
+int32_t main(){
+    IOS;
+    ll t;
+    cin>>t;
+    while(t--){
+    solve();
+    }
+    return 0;
+}
