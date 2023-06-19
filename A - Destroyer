@@ -1,0 +1,42 @@
+#include <bits/stdc++.h>
+using namespace std;
+
+#define IOS                  \
+    ios::sync_with_stdio(0); \
+    cin.tie(0);              \
+    cout.tie(0);
+#define ll long long
+ll cnt = 0;
+
+
+void solve(){
+    int n;cin>>n;
+    int arr[n];
+    int arr1[101] = {0};
+    for (int i = 0; i < n; i++){
+        cin>>arr[i];
+        arr1[arr[i]]++;
+    }
+    int i = 100;
+    while(i>=0 && arr1[i]==0){
+        i--;
+    }
+    for(int j=0; j<i; j++){
+        if(arr1[j] < arr1[j+1]){
+            cout<<"NO\n";
+            return ;
+        }
+    }
+    cout<<"YES\n";
+
+}
+
+int32_t main(){
+    IOS;
+    ll t;
+    cin>>t;
+    while(t--){
+    solve();
+    }
+    return 0;
+}
