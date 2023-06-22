@@ -1,0 +1,51 @@
+#include <bits/stdc++.h>
+using namespace std;
+
+#define IOS                  \
+    ios::sync_with_stdio(0); \
+    cin.tie(0);              \
+    cout.tie(0);
+#define ll long long
+
+
+ll count(ll mid,ll k){
+    ll ans = 0;
+    ll temp = 1;
+    while(true){
+        ans += mid/temp;
+        temp *= k;
+        if(temp > mid){
+            break;
+        }
+    }
+    return ans;
+    
+}
+
+void solve(){
+    ll n,k;cin>>n>>k;
+    ll l = 1;
+    ll h = n;
+    ll ans = 0;
+    while(l<=h){
+        ll mid = l + (h-l)/2;
+        if(count(mid,k) >= n){
+            ans = mid;
+            h = mid-1;
+        }
+        else{
+            l = mid+1;
+        }
+    }
+    cout<<ans<<endl;
+}
+
+int32_t main(){
+    IOS;
+    // ll t;
+    // cin>>t;
+    // while(t--){
+    solve();
+    // }
+    return 0;
+}
