@@ -1,0 +1,67 @@
+#include <bits/stdc++.h>
+using namespace std;
+
+#define IOS                  \
+    ios::sync_with_stdio(0); \
+    cin.tie(0);              \
+    cout.tie(0);
+#define ll long long
+
+int num;
+
+int solve(string s,int index,string temp,vector<vector<int>>& dp){
+    if(index==s.length()){
+        if(temp.length()==0){
+            return -1;
+        }
+        int n1 = stoi(temp);
+        if(n1%8==0){
+            return n1;
+        }
+        return -1;
+    }
+    if(temp.length()==3){
+        int n1 = stoi(temp);
+        if(n1%8==0){
+            return n1;
+        }
+        return -1;
+    }
+    if(temp.length()>0){
+        int n1 = stoi(temp);
+        if(dp[index][n1]!=-1){
+            return dp[index][n1];
+        }
+    }
+    int ans = solve(s,index+1,temp,dp);
+    if(ans==-1){
+        ans = solve(s,index+1,temp+s[index],dp);
+    } 
+    if(temp.length()>0){
+        int n1 = stoi(temp);
+        dp[index][n1] = ans;
+    }
+    return ans;
+}
+void solve(){
+    string str;cin>>str;
+    vector<vector<int>> dp(str.length(),vector<int>(1000,-1));
+    int ans = solve(str,0,"",dp);
+    if(ans!=-1){
+        cout<<"YES\n";
+        cout<<ans<<endl;
+    }
+    else{
+        cout<<"NO\n";
+    }
+}
+
+int32_t main(){
+    IOS;
+    // ll t;
+    // cin>>t;
+    // while(t--){
+    solve();
+    // }
+    return 0;
+}
